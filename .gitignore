@@ -1,22 +1,22 @@
-    # Global
-    .*.swp
-    .DS_Store
+# Global
+.*.swp
+.DS_Store
 
-    # Application
-    vendor/
+# Application
+vendor/
 
-    # PHPStorm
-    .idea/
+# PHPStorm
+.idea/
 
-    # Netbeans
-    nbproject/
-    /nbproject/
-    /nbproject/private/
-    /nbproject/private/private.properties
+# Netbeans
+nbproject/
+/nbproject/
+/nbproject/private/
+/nbproject/private/private.properties
 
-    # SSL Certs
-    etc/ssl/
+# SSL Certs
+etc/ssl/
 
-    # som other data lke db
-    data/
-    etc/
+# som other data lke db
+data/
+etc/
