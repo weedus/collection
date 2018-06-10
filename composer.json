@@ -1,0 +1,13 @@
+{
+  "name": "weedus/collection",
+  "require": {
+    "beberlei/assert": ">=2.9",
+    "codeception/codeception": ">=2.4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Weedus\\": "src/",
+      "Weedus\\Tests\\": "tests/"
+    }
+  }
+}
