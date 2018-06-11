@@ -20,7 +20,7 @@ class Collection implements CollectionInterface
     /** @var array */
     protected $supportedClasses;
     /** @var array */
-    protected $items;
+    protected $items=[];
 
     protected $overwriteExistingItem = true;
     /**
@@ -40,11 +40,13 @@ class Collection implements CollectionInterface
     {
         self::validateOffset($offset);
         self::validateValue($value);
-        if($this->maxCount !== null){
-            Assertion::lessOrEqualThan($this->items, $this->maxCount,'max count reached');
-        }
-        if(!$this->overwriteExistingItem){
-            Assertion::false($this->offsetExists($offset),'offset already exists');
+        if($this->hasItem()){
+            if($this->maxCount !== null){
+                Assertion::lessThan(count($this->items), $this->maxCount,'max count reached');
+            }
+            if(!$this->overwriteExistingItem){
+                Assertion::false($this->offsetExists($offset),'offset already exists');
+            }
         }
         $this->items[$offset] = $value;
     }
