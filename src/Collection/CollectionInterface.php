@@ -6,7 +6,7 @@
  * Time: 16:23
  */
 
-namespace Weedus;
+namespace Weedus\Collection;
 
 
 interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countable
