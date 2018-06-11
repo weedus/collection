@@ -143,6 +143,11 @@ class CollectionTest extends \Codeception\Test\Unit
             $this->assertTrue($this->collection->offsetExists($offset));
             $this->assertEquals($item, $this->collection->offsetGet($offset));
         }
+        foreach($this->collection as $offset => $item){
+            $this->assertArrayHasKey($offset,$this->items);
+            $this->assertEquals($item, $this->items[$offset]);
+        }
+        $this->assertEquals($this->items['string'],$this->collection['string']);
     }
 
 
