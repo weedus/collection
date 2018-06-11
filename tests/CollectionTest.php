@@ -1,8 +1,8 @@
 <?php
 namespace Weedus\Tests;
 
-use Weedus\Collection;
-use Weedus\CollectionInterface;
+use Weedus\Collection\Collection;
+use Weedus\Collection\CollectionInterface;
 use Weedus\Tests\Helper\Test1;
 use Weedus\Tests\Helper\Test2;
 use Weedus\Tests\Helper\Test3;

@@ -6,7 +6,7 @@
  * Time: 16:22
  */
 
-namespace Weedus;
+namespace Weedus\Collection;
 
 
 use Assert\Assertion;
