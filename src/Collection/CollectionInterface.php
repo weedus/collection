@@ -9,6 +9,8 @@
 namespace Weedus\Collection;
 
 
+use Weedus\Specification\SpecificationInterface;
+
 interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countable
 {
     public static function fromArray(array $array);
@@ -32,6 +34,8 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countab
     public function getKeys();
 
     public function setOverwriteExistingItem($overwriteExistingItem);
+
     public function isOverwriteExistingItem();
 
+    public function findBySpecification(SpecificationInterface $spec);
 }

@@ -3,6 +3,7 @@ namespace Weedus\Tests;
 
 use Weedus\Collection\Collection;
 use Weedus\Collection\CollectionInterface;
+use Weedus\Specification\IsType;
 use Weedus\Tests\Helper\Test1;
 use Weedus\Tests\Helper\Test2;
 use Weedus\Tests\Helper\Test3;
@@ -31,7 +32,6 @@ class CollectionTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        if(!empty($this->log)) var_dump($this->log);
     }
 
     // tests
@@ -68,7 +68,6 @@ class CollectionTest extends \Codeception\Test\Unit
         }
         $this->assertTrue($this->collection->hasItem());
         $this->assertCount(1,$this->collection);
-        $this->log('collection',$this>$this->collection);
     }
 
     public function testStoringItems()
@@ -148,10 +147,8 @@ class CollectionTest extends \Codeception\Test\Unit
             $this->assertEquals($item, $this->items[$offset]);
         }
         $this->assertEquals($this->items['string'],$this->collection['string']);
-    }
 
-
-    private function log($key, $item){
-        $this->log[$key] = $item;
+        $item = $this->collection->findBySpecification(new IsType('string'));
+        $this->assertEquals($this->items['string'], $item[0]);
     }
 }
