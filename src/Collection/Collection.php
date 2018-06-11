@@ -10,6 +10,7 @@ namespace Weedus\Collection;
 
 
 use Assert\Assertion;
+use Weedus\Specification\SpecificationInterface;
 
 class Collection implements CollectionInterface
 {
@@ -234,5 +235,16 @@ class Collection implements CollectionInterface
     public function getKeys()
     {
         return array_keys($this->items);
+    }
+
+    public function findBySpecification(SpecificationInterface $spec)
+    {
+        $items = [];
+        foreach($this as $item){
+            if($spec->isSatisfiedBy($item)){
+                $items[] = $item;
+            }
+        }
+        return $items;
     }
 }

@@ -5,7 +5,7 @@ Implements Interfaces to be used like an Array.
 
 Usage Example
 -------------
-
+Collection
 ``` php
 <?php
 
