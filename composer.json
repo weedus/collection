@@ -1,6 +1,15 @@
 {
   "name": "weedus/collection",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Benno Czopp",
+      "email": "b.czopp@gmx.net",
+      "role": "Developer"
+    }
+  ],
   "require": {
+    "php": ">=7.2",
     "beberlei/assert": ">=2.9",
     "codeception/codeception": ">=2.4.1"
   },
