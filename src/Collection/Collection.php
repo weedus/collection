@@ -71,7 +71,7 @@ class Collection implements CollectionInterface
      */
     public static function fromArray(array $array)
     {
-        $res = new self();
+        $res = new static();
         foreach ($array as $offset => $value) {
             $res->validateOffset($offset);
             $res->validateValue($value);
@@ -235,16 +235,5 @@ class Collection implements CollectionInterface
     public function getKeys()
     {
         return array_keys($this->items);
-    }
-
-    public function findBySpecification(SpecificationInterface $spec)
-    {
-        $items = [];
-        foreach($this as $item){
-            if($spec->isSatisfiedBy($item)){
-                $items[] = $item;
-            }
-        }
-        return $items;
     }
 }

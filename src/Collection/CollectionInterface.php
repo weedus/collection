@@ -36,6 +36,4 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countab
     public function setOverwriteExistingItem($overwriteExistingItem);
 
     public function isOverwriteExistingItem();
-
-    public function findBySpecification(SpecificationInterface $spec);
 }
