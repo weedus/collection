@@ -44,4 +44,11 @@ Collection
     empty($collection2); // true
 ?>
 ```
-
+SpecificationCollection (extends Collection)
+``` php
+<?php
+    $specificationCollection = SpecificationCollection::fromArray(['bla',1,new \stdClass()]);
+    $item = $specificationCollection->findBySpecification(new IsType('string')); 
+    // $item = 'bla'  
+?>
+```    

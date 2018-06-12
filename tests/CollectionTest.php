@@ -3,11 +3,12 @@ namespace Weedus\Tests;
 
 use Weedus\Collection\Collection;
 use Weedus\Collection\CollectionInterface;
+use Weedus\Collection\SpecificationCollection;
 use Weedus\Specification\IsType;
-use Weedus\Tests\Helper\Test1;
-use Weedus\Tests\Helper\Test2;
-use Weedus\Tests\Helper\Test3;
-use Weedus\Tests\Helper\Test3x;
+use Weedus\Tests\Helper\CollectionTest1;
+use Weedus\Tests\Helper\CollectionTest2;
+use Weedus\Tests\Helper\CollectionTest3;
+use Weedus\Tests\Helper\CollectionTest3X;
 
 class CollectionTest extends \Codeception\Test\Unit
 {
@@ -73,9 +74,11 @@ class CollectionTest extends \Codeception\Test\Unit
     public function testStoringItems()
     {
         $this->assertFalse($this->collection->hasItem());
+
         foreach($this->items as $key => $item){
             $this->collection->offsetSet($key,$item);
         }
+
         $this->assertTrue($this->collection->hasItem());
         $this->assertCount($this->collection->count(),$this->items);
 
@@ -108,16 +111,16 @@ class CollectionTest extends \Codeception\Test\Unit
 
     public function testRestrictedClasses()
     {
-        $this->collection->setSupportedClasses([Test1::class,Test3::class]);
-        $this->collection->offsetSet('bla',new Test1());
+        $this->collection->setSupportedClasses([CollectionTest1::class,CollectionTest3::class]);
+        $this->collection->offsetSet('bla',new CollectionTest1());
         $this->assertTrue($this->collection->hasItem());
         try{
-            $this->collection->offsetSet('one',new Test2());
+            $this->collection->offsetSet('one',new CollectionTest2());
         }catch(\Exception $exception){
             $this->assertContains('must be instance of',$exception->getMessage());
         }
         try{
-            $this->collection->offsetSet('blubb',new Test3x());
+            $this->collection->offsetSet('blubb',new CollectionTest3X());
         }catch(\Exception $exception){
             $this->assertContains('must be instance of',$exception->getMessage());
         }
@@ -147,8 +150,16 @@ class CollectionTest extends \Codeception\Test\Unit
             $this->assertEquals($item, $this->items[$offset]);
         }
         $this->assertEquals($this->items['string'],$this->collection['string']);
+    }
 
-        $item = $this->collection->findBySpecification(new IsType('string'));
+    /**
+     * @throws \Assert\AssertionFailedException
+     */
+    public function testSpecificationCollection()
+    {
+        $specificationCollection = SpecificationCollection::fromArray($this->items);
+        $item = $specificationCollection->findBySpecification(new IsType('string'));
+        $this->assertEquals(1, count($item));
         $this->assertEquals($this->items['string'], $item[0]);
     }
 }
