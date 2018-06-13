@@ -52,6 +52,6 @@ given specification must implement method 'isSatisfiedBy'
 <?php
     $specificationCollection = SpecificationCollection::fromArray(['bla',1,new \stdClass()]);
     $item = $specificationCollection->findBySpecification(new CollectionSpecificationTestIsType('string')); 
-    // $item = 'bla'  
+    // $item = ['bla']  
 ?>
 ```    
