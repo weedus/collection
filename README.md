@@ -45,10 +45,13 @@ Collection
 ?>
 ```
 SpecificationCollection (extends Collection)
+
+not bound to specific specification implementation.
+given specification must implement method 'isSatisfiedBy'
 ``` php
 <?php
     $specificationCollection = SpecificationCollection::fromArray(['bla',1,new \stdClass()]);
-    $item = $specificationCollection->findBySpecification(new IsType('string')); 
+    $item = $specificationCollection->findBySpecification(new CollectionSpecificationTestIsType('string')); 
     // $item = 'bla'  
 ?>
 ```    

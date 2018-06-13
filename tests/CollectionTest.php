@@ -4,7 +4,7 @@ namespace Weedus\Tests;
 use Weedus\Collection\Collection;
 use Weedus\Collection\CollectionInterface;
 use Weedus\Collection\SpecificationCollection;
-use Weedus\Specification\IsType;
+use Weedus\Tests\Helper\CollectionSpecificationTestIsType;
 use Weedus\Tests\Helper\CollectionTest1;
 use Weedus\Tests\Helper\CollectionTest2;
 use Weedus\Tests\Helper\CollectionTest3;
@@ -158,7 +158,7 @@ class CollectionTest extends \Codeception\Test\Unit
     public function testSpecificationCollection()
     {
         $specificationCollection = SpecificationCollection::fromArray(['bla',1,new \stdClass()]);
-        $item = $specificationCollection->findBySpecification(new IsType('string'));
+        $item = $specificationCollection->findBySpecification(new CollectionSpecificationTestIsType('string'));
         $this->assertEquals(1, count($item));
         $this->assertEquals('bla', $item[0]);
     }
