@@ -56,7 +56,7 @@ class CollectionTest extends \Codeception\Test\Unit
         try{
             $this->collection->offsetSet(null,'bla');
         }catch(\Exception $exception){
-            $this->assertContains('offset must not be empty',$exception->getMessage());
+            $this->assertContains('offset must not be NULL',$exception->getMessage());
         }
         $this->assertFalse($this->collection->hasItem());
 
@@ -157,9 +157,9 @@ class CollectionTest extends \Codeception\Test\Unit
      */
     public function testSpecificationCollection()
     {
-        $specificationCollection = SpecificationCollection::fromArray($this->items);
+        $specificationCollection = SpecificationCollection::fromArray(['bla',1,new \stdClass()]);
         $item = $specificationCollection->findBySpecification(new IsType('string'));
         $this->assertEquals(1, count($item));
-        $this->assertEquals($this->items['string'], $item[0]);
+        $this->assertEquals('bla', $item[0]);
     }
 }
