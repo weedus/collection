@@ -86,7 +86,7 @@ class Collection implements CollectionInterface
      */
     protected function validateOffset($offset)
     {
-        Assertion::notEmpty($offset,'offset must not be empty');
+        Assertion::notNull($offset,'offset must not be NULL');
         if (!empty($this->restrictedKeys)) {
             Assertion::inArray($offset, $this->restrictedKeys, 'offset not in enum [' . implode(',', $this->restrictedKeys) . ']');
         }
