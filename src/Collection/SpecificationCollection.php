@@ -9,12 +9,25 @@
 namespace Weedus\Collection;
 
 
-use Weedus\Specification\SpecificationInterface;
+use Assert\Assertion;
 
 class SpecificationCollection extends Collection implements SpecificationCollectionInterface
 {
-    public function findBySpecification(SpecificationInterface $spec)
+    public static function fromArray(array $array)
     {
+        $res = new self();
+        foreach ($array as $offset => $value) {
+            $res->validateOffset($offset);
+            $res->validateValue($value);
+        }
+        $res->items = $array;
+        return $res;
+    }
+
+    public function findBySpecification($spec)
+    {
+        Assertion::methodExists('isSatisfiedBy',$spec);
+
         $items = [];
         foreach($this as $item){
             if($spec->isSatisfiedBy($item)){

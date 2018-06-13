@@ -8,10 +8,7 @@
 
 namespace Weedus\Collection;
 
-
-use Weedus\Specification\SpecificationInterface;
-
 interface SpecificationCollectionInterface extends CollectionInterface
 {
-    public function findBySpecification(SpecificationInterface $spec);
+    public function findBySpecification($spec);
 }

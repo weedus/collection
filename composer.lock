@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e4368cb8b40a04875f031a5a427d3e6",
+    "content-hash": "57907622eb91db37f0c6622d4e19d375",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -573,16 +573,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/478465659fd987669df0bd8a9bf22a8710e5f1b6",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
                 "shasum": ""
             },
             "require": {
@@ -617,7 +617,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-05-29T17:25:09+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -2592,45 +2592,6 @@
                 "validate"
             ],
             "time": "2018-01-29T19:49:41+00:00"
-        },
-        {
-            "name": "weedus/specification",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/weedus/specification.git",
-                "reference": "6c38992a100d6f0ba041cca9a0f431d663f3cdab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/weedus/specification/zipball/6c38992a100d6f0ba041cca9a0f431d663f3cdab",
-                "reference": "6c38992a100d6f0ba041cca9a0f431d663f3cdab",
-                "shasum": ""
-            },
-            "require": {
-                "beberlei/assert": ">=2.9",
-                "codeception/codeception": ">=2.4.1",
-                "php": ">=7.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Weedus\\": "src/",
-                    "Weedus\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Benno Czopp",
-                    "email": "b.czopp@gmx.net",
-                    "role": "Developer"
-                }
-            ],
-            "time": "2018-06-11T22:50:49+00:00"
         }
     ],
     "packages-dev": [],

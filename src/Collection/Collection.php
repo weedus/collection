@@ -71,7 +71,7 @@ class Collection implements CollectionInterface
      */
     public static function fromArray(array $array)
     {
-        $res = new static();
+        $res = new self();
         foreach ($array as $offset => $value) {
             $res->validateOffset($offset);
             $res->validateValue($value);
