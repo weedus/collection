@@ -12,8 +12,6 @@ use Weedus\Tests\Helper\CollectionTest3X;
 
 class CollectionTest extends \Codeception\Test\Unit
 {
-    /** @var array */
-    private $log;
     /** @var CollectionInterface */
     private $collection;
 
@@ -89,7 +87,7 @@ class CollectionTest extends \Codeception\Test\Unit
         try{
             $this->collection->offsetSet('string','not a string');
         }catch(\Exception $exception){
-            $this->assertContains('offset already exists',$exception->getMessage());
+            $this->assertContains("offset 'string' already exists",$exception->getMessage());
         }
         $this->collection->setOverwriteExistingItem(true);
         $this->collection->offsetSet('string','string');
@@ -103,7 +101,7 @@ class CollectionTest extends \Codeception\Test\Unit
         try{
             $this->collection->offsetSet('hallo','asd');
         }catch(\Exception $exception){
-            $this->assertContains('offset not in enum',$exception->getMessage());
+            $this->assertContains("offset 'hallo' not in enum",$exception->getMessage());
         }
         $this->collection->offsetSet('bla','asd');
         $this->assertTrue($this->collection->hasItem());
@@ -139,7 +137,7 @@ class CollectionTest extends \Codeception\Test\Unit
         try{
             $item = $this->collection->offsetGet('bla');
         }catch(\Exception $exception){
-            $this->assertContains('offset not found',$exception->getMessage());
+            $this->assertContains("offset 'bla' does not exist",$exception->getMessage());
         }
         foreach($this->items as $offset => $item){
             $this->assertTrue($this->collection->offsetExists($offset));
@@ -153,7 +151,7 @@ class CollectionTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @throws \Assert\AssertionFailedException
+     * @throws \Weedus\Exceptions\MethodNotFoundException
      */
     public function testSpecificationCollection()
     {

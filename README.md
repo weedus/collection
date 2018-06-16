@@ -1,7 +1,13 @@
 # collection
-This is a simple storage object.
+This is an easy storage object.
 
 Implements Interfaces to be used like an Array.
+
+You can optionally set MaxCount, allowed Keys or Classes.
+
+SpecificationCollection additionally grants the possibility to search Items by inserting an Specification.
+Following the specification pattern the inserted Object must have a method called 'isSatisfiedBy'.
+No Interface or Class check here, feel free to use whatever implementation you like most. 
 
 Usage Example
 -------------

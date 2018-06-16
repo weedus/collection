@@ -8,9 +8,9 @@
 
 namespace Weedus\Collection;
 
-
-use Assert\Assertion;
-use Weedus\Specification\SpecificationInterface;
+use Weedus\Exceptions\ClassNotFoundException;
+use Weedus\Exceptions\InvalidArgumentException;
+use Weedus\Exceptions\NotAllowedException;
 
 class Collection implements CollectionInterface
 {
@@ -35,18 +35,18 @@ class Collection implements CollectionInterface
     /**
      * @param mixed $offset
      * @param mixed $value
-     * @throws \Assert\AssertionFailedException
+     * @throws NotAllowedException
      */
     public function offsetSet($offset, $value)
     {
         self::validateOffset($offset);
         self::validateValue($value);
         if($this->hasItem()){
-            if($this->maxCount !== null){
-                Assertion::lessThan(count($this->items), $this->maxCount,'max count reached');
+            if($this->maxCount !== null && count($this->items) >= $this->maxCount){
+                throw new NotAllowedException('max count reached');
             }
-            if(!$this->overwriteExistingItem){
-                Assertion::false($this->offsetExists($offset),'offset already exists');
+            if(!$this->overwriteExistingItem && $this->offsetExists($offset)){
+                throw new NotAllowedException("offset '$offset' already exists");
             }
         }
         $this->items[$offset] = $value;
@@ -55,19 +55,20 @@ class Collection implements CollectionInterface
     /**
      * @param mixed $offset
      * @return mixed
-     * @throws \Assert\AssertionFailedException
+     * @throws NotAllowedException
      */
     public function offsetGet($offset)
     {
         self::validateOffset($offset);
-        Assertion::true($this->offsetExists($offset),'offset not found');
+        if(!$this->offsetExists($offset)){
+            throw new InvalidArgumentException("offset '$offset' does not exist");
+        }
         return $this->items[$offset];
     }
 
     /**
      * @param array $array
      * @return Collection
-     * @throws \Assert\AssertionFailedException
      */
     public static function fromArray(array $array)
     {
@@ -82,13 +83,15 @@ class Collection implements CollectionInterface
 
     /**
      * @param $offset
-     * @throws \Assert\AssertionFailedException
+     * @throws NotAllowedException
      */
     protected function validateOffset($offset)
     {
-        Assertion::notNull($offset,'offset must not be NULL');
-        if (!empty($this->restrictedKeys)) {
-            Assertion::inArray($offset, $this->restrictedKeys, 'offset not in enum [' . implode(',', $this->restrictedKeys) . ']');
+        if($offset === null){
+            throw new InvalidArgumentException('offset must not be NULL');
+        }
+        if (!empty($this->restrictedKeys) && !in_array($offset, $this->restrictedKeys)) {
+            throw new NotAllowedException("offset '$offset' not in enum[".implode(', ', $this->restrictedKeys)."]");
         }
     }
 
@@ -98,27 +101,16 @@ class Collection implements CollectionInterface
     protected function validateValue($value)
     {
         if (!empty($this->supportedClasses)) {
-            Assertion::isObject($value);
-            Assertion::inArray(
-                get_class($value),
-                $this->supportedClasses,
-                'must be instance of [' . implode(', ',$this->supportedClasses) .']'
-            );
+            if(!is_object($value) || !in_array(get_class($value), $this->supportedClasses)){
+                throw new InvalidArgumentException('value must be instance of [' . implode(', ',$this->supportedClasses) .']');
+            }
         }
     }
 
     /**
-     * Whether a offset exists
-     * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-     * @param mixed $offset <p>
-     * An offset to check for.
-     * </p>
-     * @return boolean true on success or false on failure.
-     * </p>
-     * <p>
-     * The return value will be casted to boolean if non-boolean was returned.
-     * @since 5.0.0
-     * @throws \Assert\AssertionFailedException
+     * @param mixed $offset
+     * @return bool
+     * @throws NotAllowedException
      */
     public function offsetExists($offset)
     {
@@ -188,11 +180,10 @@ class Collection implements CollectionInterface
 
     /**
      * @param $maxCount
-     * @throws \Assert\AssertionFailedException
      */
     public function setMaxCount($maxCount)
     {
-        Assertion::integer($maxCount);
+
         $this->maxCount = $maxCount;
     }
 
@@ -223,11 +214,18 @@ class Collection implements CollectionInterface
 
     /**
      * @param array $supportedClasses
+     * @throws ClassNotFoundException
      */
     public function setSupportedClasses(array $supportedClasses)
     {
-        Assertion::allString($supportedClasses);
-        Assertion::allClassExists($supportedClasses);
+        foreach($supportedClasses as $class){
+            if(!is_string($class)){
+                throw new InvalidArgumentException('classname must be a string');
+            }
+            if(!class_exists($class)){
+                throw new ClassNotFoundException($class);
+            }
+        }
         $this->supportedClasses = $supportedClasses;
     }
 
