@@ -9,7 +9,8 @@
     }
   ],
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "weedus/exceptions": ">=0.0.1"
   },
   "require-dev": {
     "codeception/codeception": ">=2.4.1"
