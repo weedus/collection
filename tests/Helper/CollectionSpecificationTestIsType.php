@@ -8,22 +8,16 @@
 
 namespace Weedus\Tests\Helper;
 
-
-use Assert\Assertion;
-
 class CollectionSpecificationTestIsType
 {
     protected $type;
 
     /**
-     * IsType constructor.
+     * CollectionSpecificationTestIsType constructor.
      * @param $type
-     * @throws \Assert\AssertionFailedException
      */
     public function __construct($type)
     {
-        Assertion::string($type);
-        Assertion::notEq($type, 'float', 'float not possible');
         $this->type = $type;
     }
 

@@ -8,8 +8,7 @@
 
 namespace Weedus\Collection;
 
-
-use Assert\Assertion;
+use Weedus\Exceptions\MethodNotFoundException;
 
 class SpecificationCollection extends Collection implements SpecificationCollectionInterface
 {
@@ -24,9 +23,16 @@ class SpecificationCollection extends Collection implements SpecificationCollect
         return $res;
     }
 
+    /**
+     * @param $spec
+     * @return array
+     * @throws MethodNotFoundException
+     */
     public function findBySpecification($spec)
     {
-        Assertion::methodExists('isSatisfiedBy',$spec);
+        if(!method_exists($spec,'isSatisfiedBy')){
+            throw new MethodNotFoundException('isSatisfiedBy()');
+        }
 
         $items = [];
         foreach($this as $item){
