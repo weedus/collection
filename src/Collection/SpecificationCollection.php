@@ -12,6 +12,11 @@ use Weedus\Exceptions\MethodNotFoundException;
 
 class SpecificationCollection extends Collection implements SpecificationCollectionInterface
 {
+    /**
+     * @param array $array
+     * @return Collection|SpecificationCollection
+     * @throws \Weedus\Exceptions\NotAllowedException
+     */
     public static function fromArray(array $array)
     {
         $res = new self();
