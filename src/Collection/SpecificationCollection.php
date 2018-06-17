@@ -40,9 +40,9 @@ class SpecificationCollection extends Collection implements SpecificationCollect
         }
 
         $items = [];
-        foreach($this as $item){
+        foreach($this as $offset => $item){
             if($spec->isSatisfiedBy($item)){
-                $items[] = $item;
+                $items[$offset] = $item;
             }
         }
         return $items;
