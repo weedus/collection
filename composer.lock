@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "weedus/exceptions",
-            "version": "0.0.1",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/weedus/exceptions.git",
-                "reference": "45b518a53ba32ec74b1eae197b249c7d7738ec5d"
+                "reference": "3db801810293e28f3806a5698074666e2efda098"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weedus/exceptions/zipball/45b518a53ba32ec74b1eae197b249c7d7738ec5d",
-                "reference": "45b518a53ba32ec74b1eae197b249c7d7738ec5d",
+                "url": "https://api.github.com/repos/weedus/exceptions/zipball/3db801810293e28f3806a5698074666e2efda098",
+                "reference": "3db801810293e28f3806a5698074666e2efda098",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Weedus\\": "src/"
+                    "Weedus\\Exceptions\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -40,7 +40,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2018-06-16T16:16:26+00:00"
+            "time": "2018-06-19T22:47:45+00:00"
         }
     ],
     "packages-dev": [

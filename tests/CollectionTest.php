@@ -1,14 +1,14 @@
 <?php
-namespace Weedus\Tests;
+namespace Weedus\Collection\Tests;
 
 use Weedus\Collection\Collection;
 use Weedus\Collection\CollectionInterface;
 use Weedus\Collection\SpecificationCollection;
-use Weedus\Tests\Helper\CollectionSpecificationTestIsType;
-use Weedus\Tests\Helper\CollectionTest1;
-use Weedus\Tests\Helper\CollectionTest2;
-use Weedus\Tests\Helper\CollectionTest3;
-use Weedus\Tests\Helper\CollectionTest3X;
+use Weedus\Collection\Tests\Helper\CollectionSpecificationTestIsType;
+use Weedus\Collection\Tests\Helper\CollectionTest1;
+use Weedus\Collection\Tests\Helper\CollectionTest2;
+use Weedus\Collection\Tests\Helper\CollectionTest3;
+use Weedus\Collection\Tests\Helper\CollectionTest3X;
 
 class CollectionTest extends \Codeception\Test\Unit
 {
@@ -152,6 +152,7 @@ class CollectionTest extends \Codeception\Test\Unit
 
     /**
      * @throws \Weedus\Exceptions\MethodNotFoundException
+     * @throws \Weedus\Exceptions\NotAllowedException
      */
     public function testSpecificationCollection()
     {

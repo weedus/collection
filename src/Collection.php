@@ -61,7 +61,7 @@ class Collection implements CollectionInterface
     {
         self::validateOffset($offset);
         if(!$this->offsetExists($offset)){
-            throw new InvalidArgumentException("offset '$offset' does not exist");
+            throw new NotAllowedException("offset '$offset' does not exist");
         }
         return $this->items[$offset];
     }
@@ -88,7 +88,7 @@ class Collection implements CollectionInterface
     protected function validateOffset($offset)
     {
         if($offset === null){
-            throw new InvalidArgumentException('offset must not be NULL');
+            throw new NotAllowedException('offset must not be NULL');
         }
         if (!empty($this->restrictedKeys) && !in_array($offset, $this->restrictedKeys)) {
             throw new NotAllowedException("offset '$offset' not in enum[".implode(', ', $this->restrictedKeys)."]");
@@ -97,12 +97,13 @@ class Collection implements CollectionInterface
 
     /**
      * @param $value
+     * @throws NotAllowedException
      */
     protected function validateValue($value)
     {
         if (!empty($this->supportedClasses)) {
             if(!is_object($value) || !in_array(get_class($value), $this->supportedClasses)){
-                throw new InvalidArgumentException('value must be instance of [' . implode(', ',$this->supportedClasses) .']');
+                throw new NotAllowedException('value must be instance of [' . implode(', ',$this->supportedClasses) .']');
             }
         }
     }
@@ -215,12 +216,13 @@ class Collection implements CollectionInterface
     /**
      * @param array $supportedClasses
      * @throws ClassNotFoundException
+     * @throws NotAllowedException
      */
     public function setSupportedClasses(array $supportedClasses)
     {
         foreach($supportedClasses as $class){
             if(!is_string($class)){
-                throw new InvalidArgumentException('classname must be a string');
+                throw new NotAllowedException('classname must be a string');
             }
             if(!class_exists($class)){
                 throw new ClassNotFoundException($class);
