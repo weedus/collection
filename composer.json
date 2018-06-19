@@ -18,12 +18,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Weedus\\": "src/"
+      "Weedus\\Collection\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Weedus\\Tests\\": "tests/"
+      "Weedus\\Collection\\Tests\\": "tests/"
     }
   }
 }

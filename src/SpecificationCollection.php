@@ -36,7 +36,7 @@ class SpecificationCollection extends Collection implements SpecificationCollect
     public function findBySpecification($spec)
     {
         if(!method_exists($spec,'isSatisfiedBy')){
-            throw new MethodNotFoundException('isSatisfiedBy()');
+            throw new MethodNotFoundException('isSatisfiedBy()',get_class($spec));
         }
 
         $items = [];

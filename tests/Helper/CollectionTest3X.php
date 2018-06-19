@@ -6,7 +6,7 @@
  * Time: 22:52
  */
 
-namespace Weedus\Tests\Helper;
+namespace Weedus\Collection\Tests\Helper;
 
 
 class CollectionTest3X extends CollectionTest3

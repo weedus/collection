@@ -9,8 +9,6 @@
 namespace Weedus\Collection;
 
 
-use Weedus\Specification\SpecificationInterface;
-
 interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countable
 {
     public static function fromArray(array $array);

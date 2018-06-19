@@ -6,7 +6,7 @@
  * Time: 08:01
  */
 
-namespace Weedus\Tests\Helper;
+namespace Weedus\Collection\Tests\Helper;
 
 class CollectionSpecificationTestIsType
 {
