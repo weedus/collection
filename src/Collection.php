@@ -8,8 +8,6 @@
 
 namespace Weedus\Collection;
 
-use Weedus\Exceptions\ClassNotFoundException;
-use Weedus\Exceptions\InvalidArgumentException;
 use Weedus\Exceptions\NotAllowedException;
 
 class Collection implements CollectionInterface
@@ -215,7 +213,7 @@ class Collection implements CollectionInterface
 
     /**
      * @param array $supportedClasses
-     * @throws ClassNotFoundException
+     *
      * @throws NotAllowedException
      */
     public function setSupportedClasses(array $supportedClasses)
@@ -223,9 +221,6 @@ class Collection implements CollectionInterface
         foreach($supportedClasses as $class){
             if(!is_string($class)){
                 throw new NotAllowedException('classname must be a string');
-            }
-            if(!class_exists($class)){
-                throw new ClassNotFoundException($class);
             }
         }
         $this->supportedClasses = $supportedClasses;
