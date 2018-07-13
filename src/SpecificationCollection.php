@@ -14,6 +14,7 @@ class SpecificationCollection extends Collection implements SpecificationCollect
 {
     /**
      * @param array $array
+     *
      * @return Collection|SpecificationCollection
      * @throws \Weedus\Exceptions\NotAllowedException
      */
